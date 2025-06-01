@@ -4,7 +4,7 @@ cd mlops-week2
 python3 -m venv .venv
 source .venv/bin/activate
 
-rm -rf data data_v1 data_v2  # remove old data folders if any
+rm -rf data # remove old data folders if any
 
 pip install -r requirements.txt
 
@@ -19,7 +19,7 @@ git commit -m "Initialized Git and DVC"
 -----------------------------------------------------------------------------
 
 mkdir data
-dvc get https://github.com/arshita30/mlops-w2/ data_v1/iris.csv --rev main -o data/iris.csv
+dvc get https://github.com/arshita30/mlops-w2/ data/iris_v1.csv --rev main -o data/iris.csv
 
 dvc add data/iris.csv
 git add data/iris.csv.dvc .gitignore
@@ -41,7 +41,7 @@ git tag -a "v1.0" -m "model v1.0, 99 rows"
 
 
 
-dvc get https://github.com/arshita30/mlops-w2/ data_v2/iris.csv --rev main -o data/iris.csv
+dvc get https://github.com/arshita30/mlops-w2/ data/iris_v2.csv --rev main -o data/iris.csv
 
 dvc add data/iris.csv
 git add data/iris.csv.dvc
