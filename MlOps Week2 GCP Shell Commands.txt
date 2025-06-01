@@ -1,5 +1,5 @@
 git clone https://github.com/arshita30/mlops-w2/
-cd mlops-week2
+cd mlops-wk2
 
 python3 -m venv .venv
 source .venv/bin/activate
