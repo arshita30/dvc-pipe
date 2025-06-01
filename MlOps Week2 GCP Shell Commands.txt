@@ -1,0 +1,64 @@
+git clone https://github.com/Vishesh-30/mlops-week2
+cd mlops-week2
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+rm -rf data data_v1 data_v2  # remove old data folders if any
+
+pip install -r requirements.txt
+
+
+-----------------------------------------------------------------------------
+
+git init
+dvc init
+git commit -m "Initialized Git and DVC"
+
+
+-----------------------------------------------------------------------------
+
+mkdir data
+dvc get https://github.com/Vishesh-30/mlops-week2 data_v1/iris.csv --rev main -o data/iris.csv
+
+dvc add data/iris.csv
+git add data/iris.csv.dvc .gitignore
+git commit -m "Added data_v1 iris.csv with DVC"
+
+-----------------------------------------------------------------------------
+
+python main.py
+
+-----------------------------------------------------------------------------
+
+dvc add model.joblib
+git add model.joblib.dvc
+git commit -m "Trained model on data_v1"
+git tag -a "v1.0" -m "model v1.0, 99 rows"
+
+
+-----------------------------------------------------------------------------
+
+
+
+dvc get https://github.com/Vishesh-30/mlops-week2 data_v2/iris.csv --rev main -o data/iris.csv
+
+dvc add data/iris.csv
+git add data/iris.csv.dvc
+git commit -m "Replaced with data_v2 iris.csv and tracked with DVC"
+
+-----------------------------------------------------------------------------
+
+python main.py
+
+-----------------------------------------------------------------------------
+
+dvc add model.joblib
+git add model.joblib.dvc
+git commit -m "Trained model on data_v2"
+git tag -a "v2.0" -m "model v2.0, All rows"
+
+-----------------------------------------------------------------------------
+
+git checkout v1.0
+dvc checkout
